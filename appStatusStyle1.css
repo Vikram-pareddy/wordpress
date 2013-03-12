@@ -1,0 +1,24 @@
+/*-- PromoBox Color Set 1 --*/ 
+.promobox.color1 .promoheader {
+    background-image: url(http://www.gsu.edu/enrollment/images/enrollment/promobox2_gray_topleft.gif);
+    color: #FFF;
+}
+.promobox.color1 .promoheader h3{
+    background-image: url(http://www.gsu.edu/enrollment/images/enrollment/promobox2_gray_topright.gif);
+}
+.promobox.color1 .promoheader span.bg {
+    background-color: #4FA2C1;
+}
+.promobox.color1 .promofooter {
+    background-image: url(http://www.gsu.edu/enrollment/images/enrollment/promobox1_gray_bottomleft.gif);
+}
+.promobox.color1 .promofooter span.bg {
+    background-image: url(http://www.gsu.edu/enrollment/images/enrollment/promobox1_gray_bottomright.gif);
+}
+.promobox.color1 .promofooter span.bg span {
+    background-color: #BAE3F1;
+}
+.promobox.color1 .content {
+    background-color: #BAE3F1;
+    color: #666;
+}

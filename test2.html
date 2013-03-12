@@ -1,0 +1,29 @@
+<script type='text/javascript'>
+
+window.onload = fillDropDown;
+
+function fillDropDown() {
+	var ddl = document.getElementById('day1');
+	var theOption = new Option;
+	var x;
+	var i;
+
+	for(i = 0; i < 999; i++) {
+	
+		x = i + 1;
+		theOption.text = x;
+		theOption.value = x;
+		ddl.add(theOption, null);
+		theOption = new Option;
+		//ddl.options[i] = theOption;
+	}
+}
+</script>
+
+<html>
+<body>
+<select name="day1" id="day1">
+
+</select>
+</body>
+</html>
