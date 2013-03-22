@@ -8,15 +8,19 @@
 			body{
 				padding-top: 60px;
 			}
+			td{
+				padding-left:30px;
+			}
 		</style>
 
 		<link rel="stylesheet" href="css/bootstrap-responsive.css">
+		
 
 	</head>
 	
-	<body>
+	<body onload='resetPage();'>
 		
-		    <div class="navbar navbar-inverse narbar-fixed-top">
+		    <div class="navbar navbar-fixed-top">
     			<div class="navbar-inner">
     				<div class="container">
     					<a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
@@ -24,19 +28,271 @@
     						<span class="icon-bar"></span>
     						<span class="icon-bar"></span>
     					</a>
+    				
     					<a class="brand" href="#">Admission Decision Estimation</a>
     					<div class="nav-collapse collapse">
-    						<ul class="nav">
-    							<li class="active"><a href="#">Home</a></li>
-    							<li><a href="#">Link</a></li>
-   								<li class="divider-vertical"><a href="#">Link</a></li>
-    						</ul>
+    						
     					</div>
-    				</div>
-   			 	</div>
+    					
+    				</div><!--container -->
+    			</div>
     		</div>
+    					<div class="container">
+    						
+    						<div class="note-tabs">
+    							<ul class="nav nav-tabs">
+    							<li class="active"><a href="#SAT" data-toggle="tab">SAT</a></li>
+    							<li><a href="#ACT" data-toggle="tab">ACT</a></li>
+    						</ul>
+    						<div class="tab-content">
+    							<div class="tab-pane active" id="SAT">
+    								<table>
+										<tr>
+											<td>
+												SAT Verbal:
+											</td>
+											<td>
+												<input type='text' id='txtSATV' size ='4' maxlength = '4' value = ''>
+											</td>
+										</tr>
+										<tr>
+											<td>
+												SAT Math Score:
+											</td>
+											<td>
+												<input type='text' id='txtSATM' size ='4' maxlength = '4' value = ''>
+											</td>
+										</tr>
+										<tr>
+											<td>
+												High School GPA:
+											</td>
+											<td>
+												<input type='text' id='txtSATGPA' size='16' maxlength = '4' value = ''>
+											</td>
+										</tr>
+										<tr>
+											
+															<td>
+																Admissibility:
+															</td>
+															<td>
+																<label id='lblSATDecision' ></label>
+															</td>
+														
+										</tr>
+										<tr>
+										<td style='padding:15px'>
+										</tr>
+										
+										<tr>
+											<td colspan='2'>
+												<input value='Calculate' type='button' onclick='return showDecision("SAT");'> 
+											
+												<input value='Reset' type='reset'> 
+											</td>
+										</tr>
+										<tr>
+										<td style='padding:15px'>
+										</tr>
+										<tr>
+											<td colspan = '2'>
+												<span style='color:grey'>*Admission requirements may vary from year to year</span>
+											</td>
+										</tr>
+										<tr>
+											<td colspan = '2'>
+												<span style='color:grey'>**The admission requirements mentioned are the minimum values and do not guarantee an admission into GSU</span>
+											</td>
+										</tr>
+									</table>
+    							</div><!--SAT -->
+    							<div class="tab-pane" id="ACT">
+    								<table>
+										<tr>
+											<td>
+												ACT Score:
+											</td>
+											<td>
+												<input type='text' id='txtACT' size ='2' maxlength = '2' value = ''>
+											</td>
+										</tr>
+										<tr>
+											<td>
+												High School GPA:
+											</td>
+											<td>
+												<input type='text' id='txtACTGPA' size='16' maxlength = '4' value = ''>
+											</td>
+										</tr>
+										<tr>
+											
+															<td>
+																Admissibility:
+															</td>
+															<td>
+																<label id='lblACTDecision' ></label>
+															</td>
+														
+										</tr>
+										<tr>
+										<td style='padding:15px'>
+										</tr>
+										<tr>
+											<td colspan='2'>
+												<input value='Calculate' type='button' onclick='return showDecision("ACT");'> 
+											
+												<input value='Reset' type='reset'> 
+											</td>
+										</tr>
+										<tr>
+										<td style='padding:15px'>
+										</tr>
+										<tr>
+											<td colspan = '2'>
+												<span style='color:grey'>*Admission requirements may vary from year to year</span>
+											</td>
+										</tr>
+										<tr>
+											<td colspan = '2'>
+												<span style='color:grey'>**The admission requirements mentioned are the minimum values and do not guarantee an admission into GSU</span>
+											</td>
+										</tr>
+									</table>
+    							</div><!--ACT -->
+    					</div><!--tab-content -->
+    					</div>
+    				</div><!--container -->
+   			 	
+    		<!-- ==============================================
+		 JavaScript below! 															-->
+
+<!-- jQuery via Google + local fallback, see h5bp.com -->
+	  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+  	<script>window.jQuery || document.write('<script src="js/jquery-1.7.1.min.js"><\/script>')</script>
+
+<!-- Bootstrap JS: compiled and minified -->
+    <script src="js/bootstrap.min.js"></script>
+
+<!-- Example plugin: Prettify -->
+    <script src="js/prettify/prettify.js"></script>
+    
+<!-- Initialize Scripts -->
+		<script>
+			// Activate Google Prettify in this page
+			addEventListener('load', prettyPrint, false);
+		
+			$(document).ready(function(){
+
+				// Add prettyprint class to pre elements
+					$('pre').addClass('prettyprint');
+
+				// Initialize tabs and pills
+					$('.note-tabs').tab();
+								
+			}); // end document.ready
+			</script>
+<script type='text/javascript'>
+	function showDecision(testType)
+	{
+	
+		var txtSATV = document.getElementById('txtSATV');
+		var txtSATM = document.getElementById('txtSATM');
+		var txtACT = document.getElementById('txtACT');
+		var txtGPA = document.getElementById('txt'+testType+'GPA');
+		var divDecision = document.getElementById('divDecision');
+		var lblDecision = document.getElementById('lbl'+testType+'Decision');
+		
+		var satv, satm, sat, act, gpa, fi;
+		satv = ((txtSATV.value == "") ? 0:parseInt(txtSATV.value, 10));
+		satm =  ((txtSATM.value == "") ? 0:parseInt(txtSATM.value,10));
+		sat = satv + satm;
+		act =  ((txtACT.value == "") ? 0:parseInt(txtACT.value,10));
+		gpa = parseFloat(txtGPA.value,10).toFixed(2);
+		
+		if (testType == 'SAT')
+		{
+			fi = (500 * gpa) + satv + satm;
+			act = 0;
+		}
+		else if(testType == 'ACT')
+		{
+			fi = (500 * gpa) + (act * 42) + 88;
+			sat = 0;
+		}
+		
+		
+		if((fi>=3150) && (sat>=1250 || act>=28))
+		{
+			//blue
+			//divDecision.style.visibility = 'visible';
+			lblDecision.innerHTML = 'Honors Admission - Second Century';
+		}
+		else if(((fi>=3000 && fi<3150) && (sat>=1210 || act>=27)) || ((fi>=3100) && ((sat>=1210 && sat<=1240) || act == 27)))
+		{
+			//g.blue
+			//divDecision.style.visibility = 'visible';
+			lblDecision.innerHTML = 'Honors Admission - 1913 Founders Scholarship';
+		}	
+		else if((fi>=3000 && fi<3100) && (sat>=1210 || act>=27))
+		{
+			//s. blue
+			//divDecision.style.visibility = 'visible';
+			lblDecision.innerHTML = 'Honors Admission - GSU Excellence';
+		}
+		else if((fi>=3000) && ((sat>=1130 && sat<=1200) || (act >= 25 && act<=26)))
+		{
+			//yellow
+			//divDecision.style.visibility = 'visible';
+			lblDecision.innerHTML = 'Regular Admission - Admissions Foundation Award';
+		}
+		else if((fi>=2900 && fi< 3000) && (sat>=1210 || act>=27))
+		{
+			//green
+			//divDecision.style.visibility = 'visible';
+			lblDecision.innerHTML = 'Regular Admissions - GSU Achievement Award';
+		}
+		else if(((fi>=2500 && fi < 2900) && (sat>=940 || act >= 20)) || ((fi>=2900) && (sat<=1120 || act<=24))|| ((fi>=2900 && fi< 3000) && ((sat>= 1130 && sat <=1200) || (act>=25 && act <= 26))))
+		{
+			//y.green
+			//divDecision.style.visibility = 'visible';
+			lblDecision.innerHTML = 'Regular Admissions';
+		}
+		else if(((fi >= 2450 && fi < 2500) && sat > 900) || (((sat >=900 && sat<=930)  || act == 19) && fi >= 2450))
+		{
+			//orange
+			//divDecision.style.visibility = 'visible';
+			lblDecision.innerHTML = 'Summer Success Academy Admission or Panthers Excellence Program (must have a minimum of a 450 in critical reading and 450 in math';
+		}
+		else if(fi < 2450 || sat < 900)
+		{
+			//divDecision.style.visibility = 'visible';
+			lblDecision.innerHTML = 'Admission Denied';
+		}
+	}
+	
+	function resetPage()
+	{
+		var txtSATV = document.getElementById('txtSATV');
+		var txtSATM = document.getElementById('txtSATM');
+		var txtACT = document.getElementById('txtACT');
+		var txtSATGPA = document.getElementById('txtSATGPA');
+		var txtACTGPA = document.getElementById('txtACTGPA');
+		var divDecision = document.getElementById('divDecision');
+		var lblSATDecision = document.getElementById('lblSATDecision');
+		var lblACTDecision = document.getElementById('lblACTDecision');
+		
+		txtSATV.value = '';
+		txtSATM.value = '';
+		txtACT.value = '';
+		txtSATGPA.value = '';
+		lblSATDecision.value = '';
+		txtACTGPA.value = '';
+		lblACTDecision.value = '';
+		
+	}
+		</script>
     		
-    		<h1>Hello World</h1>
 	</body>
 
 </html>
